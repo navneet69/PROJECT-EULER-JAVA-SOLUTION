@@ -1,0 +1,45 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        boolean[] arr = seive();
+        for (int a0 = 0; a0 < t; a0++) {
+            int n = in.nextInt();
+            int count = 0;
+            int result = 0;
+            for (int i = 0; count <= n - 1; i++) {
+                if (arr[i]) {
+                    result = i;
+                    count++;
+                }
+            }
+            System.out.println(result);
+        }
+    }
+
+    public static boolean[] seive() {
+        int n = 100000000;
+        boolean[] arr = new boolean[n + 1];
+        Arrays.fill(arr, true);
+        for (int i = 0; i <= n; i += 2) {
+            arr[i] = false;
+        }
+        for (int j = 3; j * j <= n; j += 2) {
+            if (arr[j]) {
+                for (int k = j * j; k <= n; k += 2 * j) {
+                    arr[k] = false;
+                }
+            }
+        }
+        arr[1] = false;
+        arr[2] = true;
+        return arr;
+    }
+}

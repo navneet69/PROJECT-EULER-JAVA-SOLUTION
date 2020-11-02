@@ -1,0 +1,20 @@
+import java.io.*;
+import java.util.*;
+import java.math.BigInteger;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int t = scan.nextInt();
+        scan.nextLine();
+        BigInteger sum = new BigInteger("0");
+        for (int i = 0; i < t; i++) {
+            String s = scan.nextLine();
+            BigInteger n = new BigInteger(s);
+            sum = sum.add(n);
+        }
+        String sumTotal = sum.toString();
+        System.out.println(sumTotal.substring(0, 10));
+    }
+}

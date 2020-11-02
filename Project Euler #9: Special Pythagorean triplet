@@ -1,0 +1,43 @@
+package ProjectEuler;
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class P9 {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        for (int a0 = 0; a0 < t; a0++) {
+            int n = in.nextInt();
+            System.out.println(pyTripletProduct(n));
+        }
+    }
+
+    public static int pyTripletProduct(int n) {
+        int ns = n * n;
+        int product = -1;
+        
+        //Assuming a is known, we have two equations and two unknowns -> b & c
+        // a + b+ c = n
+        //a^2 + b^2 = c^2
+        // solving for b, we get b = (ns - 2 * a * n) / (2 * (n - a))
+        
+        for (int a = 1; a <= n / 3; a++) {
+            if ((ns - 2 * a * n) % (2 * (n - a)) == 0) {
+                int b = (ns - 2 * a * n) / (2 * (n - a));
+                int c = n - a - b;
+                if (a * a + b * b == c * c) {
+                    int temp = a * b * c;
+                    if (temp > product) {
+                        product = temp;
+                    }
+                }
+            }
+        }
+        return product;
+    }
+}
